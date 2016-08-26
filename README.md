@@ -1,4 +1,3 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 # Opt-Algorithms
 
@@ -42,6 +41,7 @@ The Ackley function is used to demonstrate, which is widely used for testing opt
 ![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/ackley_equ.png)
 
 ![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/ackley.png)
+
 *Ackley Function*
 
 The searching domain is [-32.678, 32.678] for i = 1,2,...,d;
@@ -62,8 +62,11 @@ The parameter distributions obtained from employing Bayesian inference.
 
 ![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/histogram_x2.jpg)
 
-*The posterior distribution of the parameters x_1 of Ackley function*
+*The posterior distribution of the parameters x_2 of Ackley function*
 
+![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/scatter.jpg)
+
+*The scatter plot of the parameter x_1 and the parameter x_2*
 
 # Further Development 
 
