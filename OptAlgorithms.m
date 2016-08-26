@@ -1239,7 +1239,7 @@ classdef OptAlgorithms < handle
 %   PRML
     methods (Static = true, Access = 'public')
 
-        function [xValue, yValue] = Parallel_Riemann_Metroplis_Adjusted_Langevin(obj, params)
+        function [xValue, yValue] = Parallel_Riemann_Metropolis_Adjusted_Langevin(obj, params)
 %------------------------------------------------------------------------------ 
 % Riemannian manifold Metropolis adjusted Langevin with parallel tempering (PRML)
 %
@@ -1424,7 +1424,7 @@ classdef OptAlgorithms < handle
             opt.Nchain            = length(opt.temperature);
             opt.Nparams           = length(fieldnames(params));
             opt.nsamples          = OptAlgorithms.sample;
-            opt.bounds            = log(obj.paramBound)';
+            opt.bounds            = obj.paramBound';
 
             opt.burn_in           = 100;
             opt.convergInt        = 50;
@@ -2254,7 +2254,7 @@ classdef OptAlgorithms < handle
 %                OptAlgorithms.tickLabelFormat(gca, 'x', '%0.2e');
 %                OptAlgorithms.tickLabelFormat(gca, 'x', []);
                 set(gca, 'XTickLabel', num2str(get(gca, 'xTick')', '%3g'));
-                OptAlgorithms.xtickLabelRotate([], 15, [], 'FontSize', 20, 'FontName', 'Times New Roman');
+%                 OptAlgorithms.xtickLabelRotate([], 15, [], 'FontSize', 20, 'FontName', 'Times New Roman');
                 set(gca, 'ygrid', 'on');
 
             end
@@ -2272,7 +2272,7 @@ classdef OptAlgorithms < handle
                     set(gca, 'FontName', 'Times New Roman', 'FontSize', 20);
 %                    OptAlgorithms.tickLabelFormat(gca, 'x', '%0.2e');
                     set(gca, 'XTickLabel', num2str(get(gca, 'xTick')', '%3g'));
-                    OptAlgorithms.xtickLabelRotate([], 15, [], 'FontSize', 20, 'FontName', 'Times New Roman');
+%                     OptAlgorithms.xtickLabelRotate([], 15, [], 'FontSize', 20, 'FontName', 'Times New Roman');
                     grid on;
 
                 end

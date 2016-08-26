@@ -17,7 +17,7 @@ function run()
 
     % There are four optimization algorithms availabe in this programme
     optimization_method = struct('Particle_Swarm_Optimization',[], 'Differential_Evolution',[],...
-       'Metropolis_Adjusted_Differential_Evolution',[], 'Riemann_Manifold_Metropolis_Adjusted_Langevin',[],...
+       'Metropolis_Adjusted_Differential_Evolution',[], 'Parallel_Riemann_Metropolis_Adjusted_Langevin',[],...
        'Markov_Chain_Monte_Carlo',[], 'Deterministic_algorithm_fmincon',[]);
 
     % The set of the parameters which are optimized
@@ -35,6 +35,7 @@ function run()
     optimization_method.Deterministic_algorithm_fmincon = false;
     optimization_method.Markov_Chain_Monte_Carlo = false;
     optimization_method.Metropolis_Adjusted_Differential_Evolution = true;
+    % set it true only when you can also return the Jacobian matrix of objective function
     optimization_method.Parallel_Riemann_Metropolis_Adjusted_Langevin = false;
 
 
@@ -58,15 +59,15 @@ function run()
 
         OptAlgorithms.Metropolis_Adjusted_Differential_Evolution(opt, params);
 
-    elseif isfield(optimization_method, 'Parallel_Riemann_Metropolis_Adjusted_Langevin')
-
-        OptAlgorithms.Parallel_Riemann_Metropolis_Adjusted_Langevin(opt, params);
+%     elseif isfield(optimization_method, 'Parallel_Riemann_Metropolis_Adjusted_Langevin')
+% 
+%         OptAlgorithms.Parallel_Riemann_Metropolis_Adjusted_Langevin(opt, params);
 
     elseif isfield(optimization_method, 'Deterministic_algorithm_fmincon') ...
             && optimization_method.Deterministic_algorithm_fmincon
 
         % The guessing point for the deterministic method 
-        initParams = [10 10];
+        initParams = [1 1];
 
         % Check the consistence of the initial boundary condition and the parameter amount
         OptAlgorithms.checkOptDimension(opt, length(initParams));
