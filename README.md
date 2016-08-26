@@ -36,13 +36,13 @@ In Bayesian inference field, Markov chain Monte Carlo (MCMC) is used to sample t
 
 The Ackley function is used to demonstrate, which is widely used for testing optimization algorithms, as shown below. It is characterized by a nearly flat outer region, and a large hole at the centre. The function poses a risk for optimization algorithms, particularly hill-climbing (deterministic) algorithms, to be trapped in one of its many local minima.
 
-$$ f(x) = -20 exp(-b \sqrt{\frac{1}{d} \sum_{i=1}^ d x_i^2}) - exp(\frac{1}{d} \sum_{i=1}^d \cos{c x_i}) + 20 + exp(1) $$
+![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/ackley_equ.png)
 
-![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/ackley.jpg)
+![](https://github.com/KimHe/OptAlgorithms/blob/master/doc/ackley.png)
 *Ackley Function*
 
-The searching domain is $$ x_i \in [-32.678, 32.678] $$ for $$ i = 1,2,...,d $$;
-The global optimum is $$ f([0,0,...,0]) = 0 $$;
+The searching domain is [-32.678, 32.678] for i = 1,2,...,d;
+The global optimum is f([0,0,...,0]) = 0;
 
 # Further Development 
 
