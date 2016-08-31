@@ -7,7 +7,7 @@ classdef OptAlgorithms < handle
 
     properties (Constant)
         FUNC        = @objectiveFunc;   % the objective function
-        swarm       = 20;              % the population amount
+        swarm       = 20;               % the population amount
         sample      = 1000;             % the loop count for evolution
         dataPoint   = 100;              % the amount of data observation
         DE_strategy = 5;                % the strategy of DE kernel
@@ -1347,7 +1347,7 @@ classdef OptAlgorithms < handle
                 end
 
                 for k = 1:opt.Nchain
-                    sigmaSqu(k)  = 1 ./ OptAlgorithms.GammarDistribution(1, 1, (n0 + opt.nObserv)/2, ...
+                    sigmaSqu(k)  = 1 ./ OptAlgorithms.GammarDistribution(1, 1, (n0 + opt.nDataPoint)/2, ...
                         2 / (n0 * sigmaSqu0(k) + sumSquare(k)));
 %                    sigmaChain(i,k) = sigmaSqu(k)';
                 end
@@ -1487,7 +1487,7 @@ classdef OptAlgorithms < handle
                 MetricTensor{j}.G     = Beta(j) .* (Jac' * (1/SigmaSqu) * Jac);
                 MetricTensor{j}.GradL = - Jac' * Res / SigmaSqu;
                 if rank(MetricTensor{j}.G) ~= opt.Nparams
-                    invG = pinv(MetricTensor{j}.G + eye(opt.Nparams)*1e-7);
+                    invG = pinv(MetricTensor{j}.G + eye(opt.Nparams)*1e-10);
                 else
                     invG = inv(MetricTensor{j}.G);
                 end
@@ -1497,8 +1497,8 @@ classdef OptAlgorithms < handle
                 if p == 0
                     MetricTensor{j}.sqrtInvG = R;
                 else
-                    [U,S,V] = svd( MetricTensor{j}.invG );
-                    S = diag(S); S(S<1e-5) = 1e-5;
+                    [U,S,V] = svd( invG );
+                    S = diag(S); S(S<1e-10) = 1e-10;
                     MetricTensor{j}.sqrtInvG = U * diag(sqrt(S)) * V';
                 end
 
@@ -1558,7 +1558,7 @@ classdef OptAlgorithms < handle
                     MetricTensor{j}.G     = Beta(j) .* (newJac' * (1/sigmaSqu(j)) * newJac);
                     MetricTensor{j}.GradL = -newJac' * newRes / sigmaSqu(j);
                     if rank(MetricTensor{j}.G) ~= opt.Nparams
-                        invG = pinv(MetricTensor{j}.G + eye(opt.Nparams)*1e-7);
+                        invG = pinv(MetricTensor{j}.G + eye(opt.Nparams)*1e-10);
                     else
                         invG = inv(MetricTensor{j}.G);
                     end
@@ -1568,8 +1568,8 @@ classdef OptAlgorithms < handle
                     if p == 0
                         MetricTensor{j}.sqrtInvG = R;
                     else
-                        [U,S,V] = svd( MetricTensor{j}.invG );
-                        S = diag(S); S(S<1e-5) = 1e-5;
+                        [U,S,V] = svd( invG );
+                        S = diag(S); S(S<1e-10) = 1e-10;
                         MetricTensor{j}.sqrtInvG = U * diag(sqrt(S)) * V';
                     end
 
